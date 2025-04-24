@@ -1,11 +1,9 @@
-if vim.g.vscode then
-  vim.keymap.set('n', 'gr', function()
-    vim.call('VSCodeNotify', 'editor.action.referenceSearch.trigger')
-  end)
-end
+vim.o.timeout = true
+vim.o.timeoutlen = 500 
 
 if vim.g.vscode then
-  vim.keymap.set('n', 'gt', function()
-    vim.call('VSCodeNotify', 'editor.action.goToTypeDefinition')
-  end)
+  -- VSCode Neovim
+  require "user.vscode_keymaps"
+else
+  -- Ordinary Neovim
 end
