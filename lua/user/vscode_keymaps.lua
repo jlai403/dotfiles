@@ -45,3 +45,9 @@ keymap({"n", "v"}, "<leader>fd", "<cmd>lua require('vscode').action('editor.acti
 keymap({"n", "v"}, "<leader>pa", "<cmd>lua require('vscode').action('projectManager.saveProject')<CR>")
 keymap({"n", "v"}, "<leader>po", "<cmd>lua require('vscode').action('projectManager.listProjects')<CR>")
 keymap({"n", "v"}, "<leader>ve", "<cmd>lua require('vscode').action('projectManager.editProjects')<CR>")
+
+-- keymaps for debugging
+keymap("n", "<leader>cl", "oconsole.log()<Left>")
+keymap({"n", "v"}, "<leader>rt", "<cmd>lua require('vscode').action('testing.runAtCursor')<CR>")
+keymap({"n", "v"}, "<leader>ra", "<cmd>lua require('vscode').action('testing.runAll')<CR>")
+keymap({"n", "v"}, "<leader>rd", "<cmd>lua require('vscode').action('testing.debugAtCursor')<CR>")
