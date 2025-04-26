@@ -6,11 +6,16 @@ YELLOW='\033[1;33m'
 BLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
-# Install Brew apps
+#################################
+# install brew app
+#################################
+
 echo "${GREEN}Installing Brew apps...${NC}"
 brew bundle install
 
-# update ~/.zshrc
+#################################
+# update .zshrc
+#################################
 if ! grep -q 'eval "$(starship init zsh)"' ~/.zshrc; then
   echo '
 # Load starship prompt
@@ -41,6 +46,15 @@ fi
 mkdir -p ~/.config
 ln -sf "$(pwd)/nvim" ~/.config/nvim
 echo "${GREEN}Symlink updated for nvim -> ~/.config/nvim ${NC}"
+
+# tmux
+ln -sf "$(pwd)/tmux/tmux.conf" "$HOME"/.tmux.conf;
+echo "${GREEN}Symlink updated for tmux -> ~/.tmux.conf ${NC}"
+tmux source-file ~/.tmux.conf
+
+#################################
+# OSX settings
+#################################
 
 # enable press and hold for special characters in VSCode
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
