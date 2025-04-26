@@ -1,20 +1,36 @@
 #!/usr/bin/env zsh
 
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[1;34m'
+NC='\033[0m' # No Color
+
 # Install Brew apps
-echo 'Installing Brew apps...'
+echo "${GREEN}Installing Brew apps...${NC}"
 brew bundle install
 
-# update zshrc
-if ! grep -q 'for config in ~/.dotfiles/.zsh/*.zsh' ~/.zshrc; then
+# update ~/.zshrc
+if ! grep -q 'eval "$(starship init zsh)"' ~/.zshrc; then
   echo '
-# Load all custom extensions
+# Load starship prompt
+eval "$(starship init zsh)"
+' >> ~/.zshrc
+  echo "${GREEN}Added starship prompt to ~/.zshrc ${NC}"
+else
+  echo "${YELLOW}Starship prompt already in ~/.zshrc ${NC}"
+fi
+
+if ! grep -q '# Load .dotfiles zsh configs' ~/.zshrc; then
+  echo '
+# Load .dotfiles zsh configs
 for config in ~/.dotfiles/zsh/*.zsh; do
   source "$config"
 done
 ' >> ~/.zshrc
-  echo "Added custom extensions to ~/.zshrc"
+  echo "${GREEN}Added .dotfile extensions to ~/.zshrc ${NC}"
 else
-  echo "Custom extensions already in ~/.zshrc"
+  echo "${YELLOW}.dotfile extensions already in ~/.zshrc ${NC}"
 fi
 
 #################################
@@ -24,7 +40,7 @@ fi
 # neovim symlink script
 mkdir -p ~/.config
 ln -sf "$(pwd)/nvim" ~/.config/nvim
-echo "Symlink updated for nvim -> ~/.config/nvim"
+echo "${GREEN}Symlink updated for nvim -> ~/.config/nvim ${NC}"
 
 # enable press and hold for special characters in VSCode
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false

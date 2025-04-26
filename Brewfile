@@ -1,7 +1,6 @@
 tap "1password/tap"
 tap "hashicorp/tap"
 brew "aws-vault"
-brew "python@3.11"
 brew "awscli", link: false
 brew "docker-compose", link: false
 brew "e2fsprogs", link: true
@@ -16,9 +15,11 @@ brew "opentofu"
 brew "pnpm"
 brew "pyenv"
 brew "python@3.10"
+brew "python@3.11"
 brew "starship"
 brew "telnet"
 brew "terragrunt"
+brew "tmux"
 cask "1password-cli"
 cask "ollama"
 cask "stats"
