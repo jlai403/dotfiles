@@ -44,8 +44,9 @@ fi
 
 # neovim symlink script
 mkdir -p ~/.config
-ln -sf "$(pwd)/nvim" ~/.config/nvim
-echo "${GREEN}Symlink updated for nvim -> ~/.config/nvim ${NC}"
+rm -rf ~/.config/nvim  # Remove existing symlink or directory
+ln -s "$(pwd)/nvim" ~/.config/nvim
+echo "${GREEN}Symlink updated for $(pwd)/nvim -> ~/.config/nvim ${NC}"
 
 # tmux
 ln -sf "$(pwd)/tmux/tmux.conf" "$HOME"/.tmux.conf;
