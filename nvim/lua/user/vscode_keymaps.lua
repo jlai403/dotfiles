@@ -41,9 +41,14 @@ keymap({"n", "v"}, "<leader>cp", "<cmd>lua require('vscode').action('workbench.a
 keymap({"n", "v"}, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
 keymap({"n", "v"}, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
 
--- split tabl keymaps
+-- split tab keymaps
 keymap({"n", "v"}, "<leader>svl", "<cmd>lua require('vscode').action('workbench.action.splitEditorRight')<CR>")
 keymap({"n", "v"}, "<leader>svj", "<cmd>lua require('vscode').action('workbench.action.splitEditorDown')<CR>")
+
+keymap({"n", "v"}, "<leader>fej", "<cmd>lua require('vscode').action('workbench.action.focusBelowGroup')<CR>")
+keymap({"n", "v"}, "<leader>fek", "<cmd>lua require('vscode').action('workbench.action.focusAboveGroup')<CR>")
+keymap({"n", "v"}, "<leader>feh", "<cmd>lua require('vscode').action('workbench.action.focusLeftGroup')<CR>")
+keymap({"n", "v"}, "<leader>fel", "<cmd>lua require('vscode').action('workbench.action.focusRightGroup')<CR>")
 
 -- project manager keymaps
 keymap({"n", "v"}, "<leader>pa", "<cmd>lua require('vscode').action('projectManager.saveProject')<CR>")
