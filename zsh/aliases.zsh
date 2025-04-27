@@ -6,7 +6,7 @@ alias cleartf='rm -rf .terraform* .terragrunt-cache'
 alias gi='git init'
 alias gcl='git clone'
 alias gco='git checkout'
-alias gd="git diff --output=indicator-new=' ' --output-indicator-old=' '"
+alias gd="git diff --output-indicator-new=' ' --output-indicator-old=' '"
 alias ga='git add -A'
 alias gs='git status'
 alias gc='git commit'
