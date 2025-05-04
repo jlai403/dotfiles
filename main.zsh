@@ -22,16 +22,6 @@ brew bundle install
 #################################
 echo "${BGREEN}Updating .zshrc...${NC}"
 
-if ! grep -q 'eval "$(starship init zsh)"' ~/.zshrc; then
-  echo '
-# Load starship prompt
-eval "$(starship init zsh)"
-' >> ~/.zshrc
-  echo "${GREEN}Added starship prompt to ~/.zshrc ${NC}"
-else
-  echo "${YELLOW}Starship prompt already in ~/.zshrc ${NC}"
-fi
-
 if ! grep -q '# Load .dotfiles zsh configs' ~/.zshrc; then
   echo '
 # Load .dotfiles zsh configs
@@ -42,6 +32,16 @@ done
   echo "${GREEN}Added .dotfile extensions to ~/.zshrc ${NC}"
 else
   echo "${YELLOW}.dotfile extensions already in ~/.zshrc ${NC}"
+fi
+
+if ! grep -q 'eval "$(starship init zsh)"' ~/.zshrc; then
+  echo '
+# Load starship prompt
+eval "$(starship init zsh)"
+' >> ~/.zshrc
+  echo "${GREEN}Added starship prompt to ~/.zshrc ${NC}"
+else
+  echo "${YELLOW}Starship prompt already in ~/.zshrc ${NC}"
 fi
 
 #################################
@@ -82,7 +82,11 @@ rm -rf ~/.config/nvim  # Remove existing symlink or directory
 ln -s "$(pwd)/nvim" ~/.config/nvim
 echo "${GREEN}Symlink updated for $(pwd)/nvim -> ~/.config/nvim ${NC}"
 
-# tmux
+# ghostty symlink script
+ln -sf "$(pwd)/ghostty" ~/.config/ghostty
+echo "${GREEN}Symlink updated for $(pwd)/ghostty -> ~/.config/ghostty${NC}"
+
+# tmux symlink script
 ln -sf "$(pwd)/tmux/tmux.conf" "$HOME"/.tmux.conf;
 echo "${GREEN}Symlink updated for tmux -> ~/.tmux.conf ${NC}"
 tmux source-file ~/.tmux.conf
@@ -94,4 +98,5 @@ tmux source-file ~/.tmux.conf
 # enable press and hold for special characters in VSCode
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 # reduce motion when switching desktops
-defaults write com.apple.universalaccess reduceMotion -bool true && killall Dock
+sudo defaults write com.apple.universalaccess reduceMotion -bool true && killall Dock
+
