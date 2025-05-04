@@ -10,6 +10,29 @@ BYELLOW='\033[1;33m'
 BBLUE='\033[1;34m'
 NC='\033[0m' # No Color
 
+configure_osx() {
+  echo "${BGREEN}Configuring OSX settings...${NC}"
+  # enable press and hold for special characters in VSCode
+  defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+  # reduce motion when switching desktops
+  sudo defaults write com.apple.universalaccess reduceMotion -bool true && killall Dock
+  echo "${GREEN}OSX settings configured${NC}"
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+  key="$1"
+  case $key in
+    --osx)
+      CONFIGURE_OSX=true
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
 #################################
 # install brew app
 #################################
@@ -92,11 +115,10 @@ echo "${GREEN}Symlink updated for tmux -> ~/.tmux.conf ${NC}"
 tmux source-file ~/.tmux.conf
 
 #################################
-# OSX settings
+# Run OSX configuration if requested
 #################################
 
-# enable press and hold for special characters in VSCode
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
-# reduce motion when switching desktops
-sudo defaults write com.apple.universalaccess reduceMotion -bool true && killall Dock
+if [[ "$CONFIGURE_OSX" == "true" ]]; then
+  configure_osx
+fi
 
