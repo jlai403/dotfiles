@@ -16,7 +16,10 @@ alias gl="git log --all --graph --pretty=\
 alias gb='git branch'
 
 # dev
-alias av=aws-vault
+function av() {
+  aws-vault exec "$1" -- zsh -i
+}
+
 alias tgo=terragrunt --terragrunt-tfpath tofu
 alias cleartf='rm -rf .terraform* .terragrunt-cache'
 alias svenv='source .venv/bin/activate'
